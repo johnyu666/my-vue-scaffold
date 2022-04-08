@@ -3,7 +3,7 @@ const path = require('path');
 const {VueLoaderPlugin}= require('vue-loader')
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
@@ -12,8 +12,12 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin()
     ],
-    devServer:{
-        contentBase: './dist'
+    devServer: {
+        static: {
+          directory: path.join(__dirname, 'dist'),
+        },
+        compress: true,
+        port: 9000,
     },
     module: {
         rules:
